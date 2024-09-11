@@ -14,12 +14,16 @@ import { rateLimit } from "express-rate-limit";
 
 // body parser
 app.use(express.json({ limit: "50mb" }));
-
+// Configure CORS
+const corsOptions = {
+  origin: 'http://localhost:3000', // Replace with your frontend URL
+  credentials: true, // Allow credentials (cookies, authorization headers)
+};
 // cookie parser
 app.use(cookieParser());
 
 // cors => cross origin resource sharing
-app.use(cors());
+app.use(cors(corsOptions));
 
 // api requests limit
 const limiter = rateLimit({
